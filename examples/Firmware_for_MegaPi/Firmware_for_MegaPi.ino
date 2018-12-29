@@ -1423,17 +1423,17 @@ void runModule(uint8_t device)
           int16_t speed_temp = readShort(12);
           maxSpeed = abs(speed_temp);
 
-          steppers[SLOT1 - 1] = MeStepperOnBoard(slot_num);
-          initStepper(SLOT1 - 1,maxSpeed);
-          steppers[SLOT1 - 1].move(pos_temp,extID,stepper_move_finish_callback);
+          steppers[slot_num - 1] = MeStepperOnBoard(slot_num);
+          initStepper(slot_num - 1,maxSpeed);
+          steppers[slot_num1 - 1].move(pos_temp,extID,stepper_move_finish_callback);
         }
         if(STEPPER_SPEED_MOTION == subcmd)
         {
           int16_t speed_temp = readShort(8);
 
-          steppers[SLOT1 - 1] = MeStepperOnBoard(slot_num);
-          initStepper(SLOT1 - 1,speed_temp);
-          steppers[SLOT1 - 1].setSpeed(speed_temp);
+          steppers[slot_num - 1] = MeStepperOnBoard(slot_num);
+          initStepper(slot_num - 1,speed_temp);
+          steppers[slot_num - 1].setSpeed(speed_temp);
         }
         if(STEPPER_POS_MOTION_MOVETO == subcmd)
         {
@@ -1441,14 +1441,14 @@ void runModule(uint8_t device)
           int16_t speed_temp = readShort(12);
           maxSpeed = abs(speed_temp);
 
-          steppers[SLOT1 - 1] = MeStepperOnBoard(slot_num);
-          initStepper(SLOT1 - 1,maxSpeed);
-          steppers[SLOT1 - 1].moveTo(pos_temp,extID,stepper_move_finish_callback);
+          steppers[slot_num - 1] = MeStepperOnBoard(slot_num);
+          initStepper(slot_num - 1,maxSpeed);
+          steppers[slot_num - 1].moveTo(pos_temp,extID,stepper_move_finish_callback);
         }
         else if(STEPPER_SET_CUR_POS_ZERO == subcmd)
         {
-          steppers[SLOT1 - 1] = MeStepperOnBoard(slot_num);
-          steppers[SLOT1 - 1].setCurrentPosition(0);
+          steppers[slot_num - 1] = MeStepperOnBoard(slot_num);
+          steppers[slot_num - 1].setCurrentPosition(0);
         }
       }
       break;
@@ -2968,4 +2968,3 @@ void loop()
     line_model();
   }
 }
-
